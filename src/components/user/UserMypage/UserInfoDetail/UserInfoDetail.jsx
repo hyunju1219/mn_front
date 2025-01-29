@@ -20,6 +20,8 @@ function UserInfoDetail({ userInfo, setUserInfo }) {
         addressDetail: "",
     });
 
+    console.log(userInfo);
+
     const [ fieldErrorMessages, setFieldErrorMessages ] = useState({
         name: <></>,
         phone: <></>,

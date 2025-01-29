@@ -63,7 +63,7 @@ function UserMypage() {
                 }
                 {
                     param.controllerName === "pw" &&
-                        <UserInfoPassword/>
+                        <UserInfoPassword userInfo={userInfo}/>
                 }
                 {
                     param.controllerName === "pet" &&

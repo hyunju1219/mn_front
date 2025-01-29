@@ -7,7 +7,7 @@ import { useMutation } from 'react-query';
 import { instance } from '../../../../apis/util/instance';
 import { replace, useNavigate } from 'react-router-dom';
 
-function UserInfoPassword(props) {
+function UserInfoPassword({userInfo}) {
     const navigate = useNavigate();
     const [ editMode, setEditMode ] = useState(false);
     const [ fieldErrorMessages, setFieldErrorMessages ] = useState({
@@ -17,6 +17,7 @@ function UserInfoPassword(props) {
     });
 
     const [ editPassword, setEditPassword ] = useState({
+        userId: 0,
         oldPassword: "",
         newPassword: "",
         newCheckPassword: "",
@@ -39,7 +40,10 @@ function UserInfoPassword(props) {
     };
 
     const editPasswordInfoMutation = useMutation(
-        async () => await instance.put("/edit/password", editPassword),
+        async () => await instance.put("/edit/password", {
+            ...editPassword,
+            userId: userInfo?.id
+        }),
         {
             retry: 0,
             onSuccess: editPassword => {
